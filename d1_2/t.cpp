@@ -9,16 +9,18 @@ std::vector<int> lv,rv;
 int handleInput(string line);
 bool cmp(int a, int b);
 void readLineToLists(string line);
+int calculate();
+int linearSearch(int n);
+int similarity_score();
 
 void readLineToLists(string line)
 {
 	string  dlm  = "   ";
+
 	// split line into two strings -> left and righti
 	size_t dp = line.find(dlm);
-	int l = stoi(line.substr(0,dp));
-	int r = stoi(line.substr(dp + dlm.length()));
 
-	// take each 	string put it on a list -> left and right list
+	// take each 	string put it on a list -> left and right global list
 	lv.push_back(stoi(line.substr(0,dp)));
 	rv.push_back(stoi(line.substr(dp + dlm.length())));
 	
@@ -62,7 +64,7 @@ int similarity_score(){
 
 int main (){
 	std::string f = "input.txt";
-	//open file
+	
 	ifstream mf(f);
 	std::string line; 
 
@@ -77,9 +79,9 @@ int main (){
 		readLineToLists(line);
 	}
 	
+	mf.close();
 
 	std::cout <<"Diff : " << calculate() << endl;
 	std::cout << "Sim Score: " << similarity_score() << endl;
-	mf.close();
 	std::cout << "-----------Finish---------------\n";
 }
